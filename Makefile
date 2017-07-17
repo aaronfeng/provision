@@ -228,3 +228,9 @@ pseudoxml:
 	$(SPHINXBUILD) -b pseudoxml $(ALLSPHINXOPTS) $(BUILDDIR)/pseudoxml
 	@echo
 	@echo "Build finished. The pseudo-XML files are in $(BUILDDIR)/pseudoxml."
+
+.PHONY: dockerbuild
+dockerbuild:
+	docker build -t digital-rebar/provision:0.0.1 .
+	@echo
+	@echo "Finished building digital-rebar/provision:0.0.1 docker image."
