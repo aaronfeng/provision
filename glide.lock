@@ -1,5 +1,5 @@
-hash: 793a3536b29fbd595b49b98cd409ebc9d9b6ccbc44d6ffcdb7fb2107ca543278
-updated: 2017-07-13T01:02:47.837308791-05:00
+hash: a8668a7181fb926238c252f385cf5d1f98b3fc405c7c77bfc2ebd2a0c69cf255
+updated: 2017-07-16T15:32:54.837899441-05:00
 imports:
 - name: github.com/asaskevich/govalidator
   version: 71551cef584cae1b2e01c37e8c0e1f1160eedd6f
@@ -22,6 +22,8 @@ imports:
   version: 30f82fa23fd844bd5bb1e5f216db87fd77b5eb43
 - name: github.com/elithrar/simple-scrypt
   version: 2325946f714c95de4a6088202c402fbdfa64163b
+- name: github.com/fsnotify/fsnotify
+  version: 4da3e2cfbabc9f751898f250b49f2439785783a1
 - name: github.com/ghodss/yaml
   version: 0ca9ea5df5451ffdf184b4428c902747c2c11cd7
 - name: github.com/gin-contrib/cors

@@ -56,6 +56,7 @@ type ProgOpts struct {
 	DataRoot            string `long:"data-root" description:"Location we should store runtime information in" default:"/var/lib/dr-provision"`
 	OurAddress          string `long:"static-ip" description:"IP address to advertise for the static HTTP file server" default:"192.168.124.11"`
 	FileRoot            string `long:"file-root" description:"Root of filesystem we should manage" default:"/var/lib/tftpboot"`
+	PluginRoot          string `long:"plugin-root" description:"Directory for plugins" default:"/var/lib/dr-provision-plugins"`
 	DevUI               string `long:"dev-ui" description:"Root of UI Pages for Development"`
 	DhcpInterfaces      string `long:"dhcp-ifs" description:"Comma-seperated list of interfaces to listen for DHCP packets" default:""`
 	DefaultBootEnv      string `long:"default-boot-env" description:"The default bootenv for the nodes" default:"sledgehammer"`
@@ -138,10 +139,16 @@ func Server(c_opts *ProgOpts) {
 		},
 		publishers)
 
+	pc, err := midlayer.InitPluginController(c_opts.PluginRoot, dt, logger, publishers)
+	if err != nil {
+		logger.Fatalf("Error starting plugin service: %v", err)
+	} else {
+		services = append(services, pc)
+	}
+
 	fe := frontend.NewFrontend(dt, logger,
 		c_opts.OurAddress, c_opts.ApiPort, c_opts.FileRoot,
-		c_opts.DevUI, nil, publishers)
-	publishers.Add(fe)
+		c_opts.DevUI, nil, publishers, pc)
 
 	if _, err := os.Stat(c_opts.TlsCertFile); os.IsNotExist(err) {
 		buildKeys(c_opts.TlsCertFile, c_opts.TlsKeyFile)

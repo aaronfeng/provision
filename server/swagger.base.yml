@@ -18,3 +18,7 @@ tags:
   - name: Machines
   - name: Profiles
   - name: Users
+  - name: Tasks
+  - name: Jobs
+  - name: Plugins
+  - name: PluginProviders

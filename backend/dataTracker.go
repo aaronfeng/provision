@@ -203,6 +203,7 @@ func NewDataTracker(backend store.SimpleStore,
 		&Reservation{p: res},
 		&Lease{p: res},
 		&Pref{p: res},
+		&Plugin{p: res},
 	}
 	res.objs = map[string]*Store{}
 	for _, obj := range objs {
