@@ -37,11 +37,11 @@ ENV LANG=C.UTF-8
 
 # digital rebar provision install starts here
 EXPOSE 8091 8092 69 67
-ENV installdir "/provision"
-ENV staticip "172.17.0.2"
-ENV drp "./dr-provision --static-ip=${staticip} --file-root=${installdir}/drp-data/tftpboot --data-root=drp-data/digitalrebar"
-COPY tools/install.sh ${installdir}/
-WORKDIR ${installdir}
+ENV INSTALLDIR "/provision"
+ENV STATICIP "172.17.0.2"
+ENV drp "./dr-provision --static-ip=${STATICIP} --file-root=${INSTALLDIR}/drp-data/tftpboot --data-root=drp-data/digitalrebar"
+COPY tools/install.sh ${INSTALLDIR}/
+WORKDIR ${INSTALLDIR}
 VOLUME ["drp-data"]
 # install provision and its deps
 RUN apk add --no-cache bash curl libarchive-tools p7zip && ./install.sh --isolated install
